@@ -1,0 +1,26 @@
+{
+  "name": "eslint-plugin-ftgp",
+  "version": "0.0.0",
+  "description": "Custom rules for FTGP",
+  "keywords": [
+    "eslint",
+    "eslintplugin",
+    "eslint-plugin"
+  ],
+  "author": "Benjamin Van Ryseghem",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "requireindex": "~1.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^2.2.0",
+    "lodash": "^4.5.1"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "license": "ISC"
+}
