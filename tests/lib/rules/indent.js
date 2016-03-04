@@ -1104,8 +1104,31 @@ ruleTester.run("indent", rule, {
 			"    );\n" +
 			"};",
 			options: [4]
+		},
+		{
+			code: "foo (\n" +
+			"	[\n" +
+			"		3\n" +
+			"	],\n" +
+			"	4" +
+			");",
+			options: ["tab"]
+		},
+		{
+			code: "foo ([\n" +
+			"		3\n" +
+			"	],\n" +
+			"	4" +
+			");",
+			options: ["tab"]
+		},
+		{
+			code: "foo ([\n" +
+			"	3\n" +
+			"], 4\n" +
+			");",
+			options: ["tab"]
 		}
-
 	],
 
 	invalid: [
