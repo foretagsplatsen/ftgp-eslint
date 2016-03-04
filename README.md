@@ -45,7 +45,13 @@ Then configure the rules you want to use under the rules section.
 
 ## Supported Rules
 
-* Fill in provided rules here
+- indent: see [documentation](./docs/rules/indent.md).
+- no-concatenated-polyglots: see [documentation](./docs/rules/no-concatenated-polyglots.md).
+- no-define-on-multiple-lines: see [documentation](./docs/rules/no-define-on-multiple-lines.md).
+- no-define-unused-dependency: see [documentation](./docs/rules/no-define-unused-dependency.md).
+- no-define-with-lees-than-2-arguments: see [documentation](./docs/rules/no-define-with-lees-than-2-arguments.md).
+- no-untranslated-polyglots: see [documentation](./docs/rules/no-untranslated-polyglots.md).
+- no-untrimmed-polyglots: see [documentation](./docs/rules/no-untrimmed-polyglots.md).
 
 
 
