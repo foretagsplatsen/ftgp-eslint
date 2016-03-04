@@ -1,5 +1,7 @@
 # eslint-plugin-ftgp
 
+[![Build Status](https://travis-ci.org/foretagsplatsen/ftgp-eslint.svg?branch=master)](https://travis-ci.org/foretagsplatsen/ftgp-eslint)
+
 Custom rules for FTGP
 
 ## Installation
