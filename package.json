@@ -10,14 +10,15 @@
   "author": "Benjamin Van Ryseghem",
   "main": "lib/index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "./node_modules/.bin/mocha tests/lib/**/*.js --reporter progress"
   },
   "dependencies": {
     "requireindex": "~1.1.0"
   },
   "devDependencies": {
     "eslint": "^2.2.0",
-    "lodash": "^4.5.1"
+    "lodash": "^4.5.1",
+    "mocha": "^2.4.5"
   },
   "engines": {
     "node": ">=0.10.0"
