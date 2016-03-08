@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-ftgp",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Custom rules for FTGP",
   "keywords": [
     "eslint",
@@ -10,7 +10,7 @@
   "author": "Benjamin Van Ryseghem",
   "main": "lib/index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha tests/lib/**/*.js --reporter progress"
+    "test": "mocha tests/lib/**/*.js --reporter progress"
   },
   "dependencies": {
     "requireindex": "~1.1.0",
@@ -23,5 +23,17 @@
   "engines": {
     "node": ">=0.10.0"
   },
-  "license": "ISC"
+  "license": "MIT",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/foretagsplatsen/ftgp-eslint.git"
+  },
+  "bugs": {
+    "url": "https://github.com/foretagsplatsen/ftgp-eslint/issues"
+  },
+  "homepage": "https://github.com/foretagsplatsen/ftgp-eslint#readme"
 }
