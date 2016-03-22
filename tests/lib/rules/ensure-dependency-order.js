@@ -58,11 +58,11 @@ ruleTester.run("ensure-dependency-order", rule, {
 			code: "define(['foo', 'bar'], function(bar, foo){})",
 			errors: [
 				{
-					message: 'Expected name is "foo" but "bar".',
+					message: 'Expected name is "foo" but "bar" was used.',
 					type: "Identifier"
 				},
 				{
-					message: 'Expected name is "bar" but "foo".',
+					message: 'Expected name is "bar" but "foo" was used.',
 					type: "Identifier"
 				}
 			]
