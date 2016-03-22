@@ -43,6 +43,9 @@ ruleTester.run("ensure-dependency-order", rule, {
 		{
 			code: "define(['jquery'], function(jQuery){})",
 			options: [{jquery: "jQuery"}]
+		},
+		{
+			code: "define(['foo-test'], function(fooTest){})"
 		}
 	],
 
