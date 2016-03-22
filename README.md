@@ -45,6 +45,7 @@ Then configure the rules you want to use under the rules section.
 
 ## Supported Rules
 
+- ensure-dependency-order: see [documentation](./docs/rules/ensure-dependency-order.md).
 - indent: see [documentation](./docs/rules/indent.md).
 - no-concatenated-polyglots: see [documentation](./docs/rules/no-concatenated-polyglots.md).
 - no-dot-dot-in-define: see [documentation](./docs/rules/no-dot-dot-in-define.md).
