@@ -44,3 +44,15 @@ unless an aliases map is provided, like:
 }
 
 ```
+
+The alias map values can also be an array of possible names.
+
+By example:
+
+```js
+
+{
+	jquery: ["jQuery", "$"]
+}
+
+```
