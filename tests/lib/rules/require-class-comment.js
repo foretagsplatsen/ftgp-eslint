@@ -39,7 +39,8 @@ ruleTester.run("require-class-comment", rule, {
 			"model.abstractSubclass(function(){})"
 		},
 		fixtures.valid.twoClasses,
-		fixtures.valid.params
+		fixtures.valid.params,
+		fixtures.valid.optionalParams
 	],
 
 	invalid: [
@@ -73,7 +74,7 @@ ruleTester.run("require-class-comment", rule, {
 		{
 			code: "/** \n " +
 			" * Test\n" +
-			" * @param foo {boolean}\n" +
+			" * @param foo - another description\n" +
 			" */\n" +
 			"model.subclass(function(){})",
 			errors: [
@@ -112,6 +113,7 @@ ruleTester.run("require-class-comment", rule, {
 		fixtures.invalid.innerComment,
 		fixtures.invalid.missingParams,
 		fixtures.invalid.duplicateParams,
-		fixtures.invalid.extraParams
+		fixtures.invalid.extraParams,
+		fixtures.invalid.missingDash
 	]
 });
