@@ -2,8 +2,8 @@ module.exports = {
 	valid: {
 		params: '/**\n' +
 		' * Foo\n' +
-		' * @param {string} spec.bar identifier\n' +
-		' * @param {number} spec.baz number\n' +
+		' * @param {string} spec.bar - identifier\n with long description\n' +
+		' * @param {number} spec.baz - number\n' +
 		' */\n' +
 		'model.subclass(function(that, my){\n' +
 		'	my.initialize = function(spec) {\n' +
@@ -18,13 +18,35 @@ module.exports = {
 		'/**\n' +
 		' * Bar\n' +
 		' */\n' +
-		'var bar = object.subclass(function(){});'
+		'var bar = object.subclass(function(){});',
+		optionalParams: '/**\n' +
+		' * Foo\n' +
+		' * @param {number} [spec.baz] - number\n' +
+		' */\n' +
+		'model.subclass(function(that, my){\n' +
+		'	my.initialize = function(spec) {\n' +
+		'		my.baz = spec.baz\n' +
+		'	};\n' +
+		'})'
 	},
 	invalid: {
+		missingDash: {
+			code: '/**\n' +
+			' * Awesome description\n' +
+			' * @param {boolean} foo Foo\n' +
+			' */\n' +
+			'model.subclass(function(){});',
+			errors: [
+				{
+					message: 'JSDoc parameter description for \'foo\' should start with \'-\'.',
+					type: 'Block'
+				}
+			]
+		},
 		missingParams: {
 			code: '/**\n' +
 			' * Foo\n' +
-			' * @param {string} spec.bar identifier\n' +
+			' * @param {string} spec.bar - identifier\n' +
 			' */\n' +
 			'model.subclass(function(that, my){\n' +
 			'	my.initialize = function(spec) {\n' +
@@ -42,8 +64,8 @@ module.exports = {
 		extraParams: {
 			code: '/**\n' +
 			' * Foo\n' +
-			' * @param {string} spec.bar identifier\n' +
-			' * @param {string} spec.baz identifier\n' +
+			' * @param {string} spec.bar - identifier\n' +
+			' * @param {string} spec.baz - identifier\n' +
 			' */\n' +
 			'model.subclass(function(that, my){\n' +
 			'	my.initialize = function(spec) {\n' +
@@ -60,8 +82,8 @@ module.exports = {
 		duplicateParams: {
 			code: '/**\n' +
 			' * Foo\n' +
-			' * @param {string} spec.bar identifier\n' +
-			' * @param {string} spec.bar identifier\n' +
+			' * @param {string} spec.bar - identifier\n' +
+			' * @param {string} spec.bar - identifier\n' +
 			' */\n' +
 			'model.subclass(function(that, my){\n' +
 			'	my.initialize = function(spec) {\n' +
