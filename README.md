@@ -54,8 +54,4 @@ Then configure the rules you want to use under the rules section.
 - no-define-with-lees-than-2-arguments: see [documentation](./docs/rules/no-define-with-lees-than-2-arguments.md).
 - no-untranslated-polyglots: see [documentation](./docs/rules/no-untranslated-polyglots.md).
 - no-untrimmed-polyglots: see [documentation](./docs/rules/no-untrimmed-polyglots.md).
-
-
-
-
-
+- only-literal-polyglots: see [documentation](./docs/rules/only-literal-polyglots.md).
