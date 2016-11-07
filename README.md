@@ -55,3 +55,26 @@ Then configure the rules you want to use under the rules section.
 - no-untranslated-polyglots: see [documentation](./docs/rules/no-untranslated-polyglots.md).
 - no-untrimmed-polyglots: see [documentation](./docs/rules/no-untrimmed-polyglots.md).
 - only-literal-polyglots: see [documentation](./docs/rules/only-literal-polyglots.md).
+
+## Contributing
+
+Run all tests with:
+
+```
+npm test
+```
+
+Run only a specific test with:
+
+```
+mocha tests/lib/rules/only-literal-polyglots.js  --reporter progress
+```
+
+Add a new rule with [Yeoman's generator-eslint](https://www.npmjs.com/package/generator-eslint).
+
+Release a new version by:
+1. running the tests
+1. changing the `version` property in `package.json`
+1. running `npm publish`
+1. committing the new `package.json`
+1. creating the release on github
