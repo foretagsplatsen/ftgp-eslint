@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-ftgp",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "Custom rules for FTGP",
   "keywords": [
     "eslint",
