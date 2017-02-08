@@ -18,7 +18,7 @@ var rule = require("../../../lib/rules/require-class-comment"),
 // Tests
 //------------------------------------------------------------------------------
 
-var ruleTester = new RuleTester();
+var ruleTester = new RuleTester({parserOptions: {ecmaVersion: 6}});
 ruleTester.run("require-class-comment", rule, {
 
 	valid: [
@@ -38,8 +38,10 @@ ruleTester.run("require-class-comment", rule, {
 			" */\n" +
 			"model.abstractSubclass(function(){})"
 		},
-		fixtures.valid.twoClasses,
 		fixtures.valid.params,
+		fixtures.valid.destructuringUnnamed,
+		fixtures.valid.destructuringNamed,
+		fixtures.valid.twoClasses,
 		fixtures.valid.optionalParams
 	],
 
@@ -110,10 +112,13 @@ ruleTester.run("require-class-comment", rule, {
 				}
 			]
 		},
-		fixtures.invalid.innerComment,
+		fixtures.invalid.missingDash,
 		fixtures.invalid.missingParams,
-		fixtures.invalid.duplicateParams,
+		fixtures.invalid.missingParamsDestructuring,
 		fixtures.invalid.extraParams,
-		fixtures.invalid.missingDash
+		fixtures.invalid.extraParamsDestructuring,
+		fixtures.invalid.duplicateParams,
+		fixtures.invalid.duplicateParamsDestructuring,
+		fixtures.invalid.innerComment
 	]
 });
