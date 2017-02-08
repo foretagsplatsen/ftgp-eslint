@@ -11,6 +11,24 @@ module.exports = {
 		'		my.baz = spec.baz\n' +
 		'	};\n' +
 		'})',
+		destructuringUnnamed: '/**\n' +
+		' * Foo\n' +
+		' * @param {string} spec.bar - identifier\n with long description\n' +
+		' */\n' +
+		'model.subclass(function(that, my){\n' +
+		'	my.initialize = function({bar}) {\n' +
+		'		my.bar = bar\n' +
+		'	};\n' +
+		'})',
+		destructuringNamed: '/**\n' +
+		' * Foo\n' +
+		' * @param {string} spec.bar - identifier\n with long description\n' +
+		' */\n' +
+		'model.subclass(function(that, my){\n' +
+		'	my.initialize = function({bar: barValue}) {\n' +
+		'		my.bar = barValue\n' +
+		'	};\n' +
+		'})',
 		twoClasses: '/**\n' +
 		' * Foo\n' +
 		' */\n' +
@@ -61,6 +79,24 @@ module.exports = {
 				}
 			]
 		},
+		missingParamsDestructuring: {
+			code: '/**\n' +
+			' * Foo\n' +
+			' * @param {string} spec.bar - identifier\n' +
+			' */\n' +
+			'model.subclass(function(that, my){\n' +
+			'	my.initialize = function({bar, baz}) {\n' +
+			'		my.bar = bar\n' +
+			'		my.baz = baz\n' +
+			'	};\n' +
+			'})',
+			errors: [
+				{
+					message: 'Missing JSDoc for parameter \'spec.baz\'.',
+					type: 'Block'
+				}
+			]
+		},
 		extraParams: {
 			code: '/**\n' +
 			' * Foo\n' +
@@ -79,6 +115,24 @@ module.exports = {
 				}
 			]
 		},
+		extraParamsDestructuring: {
+			code: '/**\n' +
+			' * Foo\n' +
+			' * @param {string} spec.bar - identifier\n' +
+			' * @param {string} spec.baz - identifier\n' +
+			' */\n' +
+			'model.subclass(function(that, my){\n' +
+			'	my.initialize = function({bar}) {\n' +
+			'		my.bar = bar\n' +
+			'	};\n' +
+			'})',
+			errors: [
+				{
+					message: 'Non-matching JSDoc parameter \'spec.baz\'.',
+					type: 'Block'
+				}
+			]
+		},
 		duplicateParams: {
 			code: '/**\n' +
 			' * Foo\n' +
@@ -88,6 +142,24 @@ module.exports = {
 			'model.subclass(function(that, my){\n' +
 			'	my.initialize = function(spec) {\n' +
 			'		my.bar = spec.bar\n' +
+			'	};\n' +
+			'})',
+			errors: [
+				{
+					message: 'Duplicate JSDoc parameter \'spec.bar\'.',
+					type: 'Block'
+				}
+			]
+		},
+		duplicateParamsDestructuring: {
+			code: '/**\n' +
+			' * Foo\n' +
+			' * @param {string} spec.bar - identifier\n' +
+			' * @param {string} spec.bar - identifier\n' +
+			' */\n' +
+			'model.subclass(function(that, my){\n' +
+			'	my.initialize = function({bar}) {\n' +
+			'		my.bar = bar\n' +
 			'	};\n' +
 			'})',
 			errors: [
