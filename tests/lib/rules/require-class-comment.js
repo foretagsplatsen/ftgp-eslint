@@ -112,6 +112,19 @@ ruleTester.run("require-class-comment", rule, {
 				}
 			]
 		},
+		{
+			code: "/** \n " +
+			" * `Test`\n" +
+			" * @virtual\n" +
+			" */\n" +
+			"model.subclass(function(){})",
+			errors: [
+				{
+					message: "JSDoc `virtual` keyword on a non-abstract class.",
+					type: "Block"
+				}
+			]
+		},
 		fixtures.invalid.missingDash,
 		fixtures.invalid.missingParams,
 		fixtures.invalid.missingParamsDestructuring,
