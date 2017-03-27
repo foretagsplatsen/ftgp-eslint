@@ -42,7 +42,8 @@ ruleTester.run("require-class-comment", rule, {
 		fixtures.valid.destructuringUnnamed,
 		fixtures.valid.destructuringNamed,
 		fixtures.valid.twoClasses,
-		fixtures.valid.optionalParams
+		fixtures.valid.optionalParams,
+		fixtures.valid.paramsWithDefaultValue
 	],
 
 	invalid: [
