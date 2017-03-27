@@ -45,6 +45,15 @@ module.exports = {
 		'	my.initialize = function(spec) {\n' +
 		'		my.baz = spec.baz\n' +
 		'	};\n' +
+		'})',
+		paramsWithDefaultValue: '/**\n' +
+		' * Foo\n' +
+		' * @param {string} spec.bar - identifier\n with long description\n' +
+		' */\n' +
+		'model.subclass(function(that, my){\n' +
+		'	my.initialize = function({bar: barValue} = {}) {\n' +
+		'		my.bar = barValue\n' +
+		'	};\n' +
 		'})'
 	},
 	invalid: {
