@@ -1,68 +1,68 @@
 module.exports = {
 	valid: {
 		params: '/**\n' +
-		' * Foo\n' +
-		' * @param {string} spec.bar - identifier\n with long description\n' +
-		' * @param {number} spec.baz - number\n' +
-		' */\n' +
-		'model.subclass(function(that, my){\n' +
-		'	my.initialize = function(spec) {\n' +
-		'		my.bar = spec.bar\n' +
-		'		my.baz = spec.baz\n' +
-		'	};\n' +
-		'})',
+			' * Foo\n' +
+			' * @param {string} spec.bar - identifier\n with long description\n' +
+			' * @param {number} spec.baz - number\n' +
+			' */\n' +
+			'model.subclass(function(that, my){\n' +
+			'	my.initialize = function(spec) {\n' +
+			'		my.bar = spec.bar\n' +
+			'		my.baz = spec.baz\n' +
+			'	};\n' +
+			'})',
 		destructuringUnnamed: '/**\n' +
-		' * Foo\n' +
-		' * @param {string} spec.bar - identifier\n with long description\n' +
-		' */\n' +
-		'model.subclass(function(that, my){\n' +
-		'	my.initialize = function({bar}) {\n' +
-		'		my.bar = bar\n' +
-		'	};\n' +
-		'})',
+			' * Foo\n' +
+			' * @param {string} spec.bar - identifier\n with long description\n' +
+			' */\n' +
+			'model.subclass(function(that, my){\n' +
+			'	my.initialize = function({bar}) {\n' +
+			'		my.bar = bar\n' +
+			'	};\n' +
+			'})',
 		destructuringNamed: '/**\n' +
-		' * Foo\n' +
-		' * @param {string} spec.bar - identifier\n with long description\n' +
-		' */\n' +
-		'model.subclass(function(that, my){\n' +
-		'	my.initialize = function({bar: barValue}) {\n' +
-		'		my.bar = barValue\n' +
-		'	};\n' +
-		'})',
+			' * Foo\n' +
+			' * @param {string} spec.bar - identifier\n with long description\n' +
+			' */\n' +
+			'model.subclass(function(that, my){\n' +
+			'	my.initialize = function({bar: barValue}) {\n' +
+			'		my.bar = barValue\n' +
+			'	};\n' +
+			'})',
 		twoClasses: '/**\n' +
-		' * Foo\n' +
-		' */\n' +
-		'var foo = object.subclass(function(){});\n\n' +
-		'/**\n' +
-		' * Bar\n' +
-		' */\n' +
-		'var bar = object.subclass(function(){});',
+			' * Foo\n' +
+			' */\n' +
+			'var foo = object.subclass(function(){});\n\n' +
+			'/**\n' +
+			' * Bar\n' +
+			' */\n' +
+			'var bar = object.subclass(function(){});',
 		optionalParams: '/**\n' +
-		' * Foo\n' +
-		' * @param {number} [spec.baz] - number\n' +
-		' */\n' +
-		'model.subclass(function(that, my){\n' +
-		'	my.initialize = function(spec) {\n' +
-		'		my.baz = spec.baz\n' +
-		'	};\n' +
-		'})',
+			' * Foo\n' +
+			' * @param {number} [spec.baz] - number\n' +
+			' */\n' +
+			'model.subclass(function(that, my){\n' +
+			'	my.initialize = function(spec) {\n' +
+			'		my.baz = spec.baz\n' +
+			'	};\n' +
+			'})',
 		paramsWithDefaultValue: '/**\n' +
-		' * Foo\n' +
-		' * @param {string} spec.bar - identifier\n with long description\n' +
-		' */\n' +
-		'model.subclass(function(that, my){\n' +
-		'	my.initialize = function({bar: barValue} = {}) {\n' +
-		'		my.bar = barValue\n' +
-		'	};\n' +
-		'})'
+			' * Foo\n' +
+			' * @param {string} spec.bar - identifier\n with long description\n' +
+			' */\n' +
+			'model.subclass(function(that, my){\n' +
+			'	my.initialize = function({bar: barValue} = {}) {\n' +
+			'		my.bar = barValue\n' +
+			'	};\n' +
+			'})'
 	},
 	invalid: {
 		missingDash: {
 			code: '/**\n' +
-			' * Awesome description\n' +
-			' * @param {boolean} foo Foo\n' +
-			' */\n' +
-			'model.subclass(function(){});',
+				' * Awesome description\n' +
+				' * @param {boolean} foo Foo\n' +
+				' */\n' +
+				'model.subclass(function(){});',
 			errors: [
 				{
 					message: 'JSDoc parameter description for \'foo\' should start with \'-\'.',
@@ -72,15 +72,15 @@ module.exports = {
 		},
 		missingParams: {
 			code: '/**\n' +
-			' * Foo\n' +
-			' * @param {string} spec.bar - identifier\n' +
-			' */\n' +
-			'model.subclass(function(that, my){\n' +
-			'	my.initialize = function(spec) {\n' +
-			'		my.bar = spec.bar\n' +
-			'		my.baz = spec.baz\n' +
-			'	};\n' +
-			'})',
+				' * Foo\n' +
+				' * @param {string} spec.bar - identifier\n' +
+				' */\n' +
+				'model.subclass(function(that, my){\n' +
+				'	my.initialize = function(spec) {\n' +
+				'		my.bar = spec.bar\n' +
+				'		my.baz = spec.baz\n' +
+				'	};\n' +
+				'})',
 			errors: [
 				{
 					message: 'Missing JSDoc for parameter \'spec.baz\'.',
@@ -90,15 +90,15 @@ module.exports = {
 		},
 		missingParamsDestructuring: {
 			code: '/**\n' +
-			' * Foo\n' +
-			' * @param {string} spec.bar - identifier\n' +
-			' */\n' +
-			'model.subclass(function(that, my){\n' +
-			'	my.initialize = function({bar, baz}) {\n' +
-			'		my.bar = bar\n' +
-			'		my.baz = baz\n' +
-			'	};\n' +
-			'})',
+				' * Foo\n' +
+				' * @param {string} spec.bar - identifier\n' +
+				' */\n' +
+				'model.subclass(function(that, my){\n' +
+				'	my.initialize = function({bar, baz}) {\n' +
+				'		my.bar = bar\n' +
+				'		my.baz = baz\n' +
+				'	};\n' +
+				'})',
 			errors: [
 				{
 					message: 'Missing JSDoc for parameter \'spec.baz\'.',
@@ -108,15 +108,15 @@ module.exports = {
 		},
 		extraParams: {
 			code: '/**\n' +
-			' * Foo\n' +
-			' * @param {string} spec.bar - identifier\n' +
-			' * @param {string} spec.baz - identifier\n' +
-			' */\n' +
-			'model.subclass(function(that, my){\n' +
-			'	my.initialize = function(spec) {\n' +
-			'		my.bar = spec.bar\n' +
-			'	};\n' +
-			'})',
+				' * Foo\n' +
+				' * @param {string} spec.bar - identifier\n' +
+				' * @param {string} spec.baz - identifier\n' +
+				' */\n' +
+				'model.subclass(function(that, my){\n' +
+				'	my.initialize = function(spec) {\n' +
+				'		my.bar = spec.bar\n' +
+				'	};\n' +
+				'})',
 			errors: [
 				{
 					message: 'Non-matching JSDoc parameter \'spec.baz\'.',
@@ -126,15 +126,15 @@ module.exports = {
 		},
 		extraParamsDestructuring: {
 			code: '/**\n' +
-			' * Foo\n' +
-			' * @param {string} spec.bar - identifier\n' +
-			' * @param {string} spec.baz - identifier\n' +
-			' */\n' +
-			'model.subclass(function(that, my){\n' +
-			'	my.initialize = function({bar}) {\n' +
-			'		my.bar = bar\n' +
-			'	};\n' +
-			'})',
+				' * Foo\n' +
+				' * @param {string} spec.bar - identifier\n' +
+				' * @param {string} spec.baz - identifier\n' +
+				' */\n' +
+				'model.subclass(function(that, my){\n' +
+				'	my.initialize = function({bar}) {\n' +
+				'		my.bar = bar\n' +
+				'	};\n' +
+				'})',
 			errors: [
 				{
 					message: 'Non-matching JSDoc parameter \'spec.baz\'.',
@@ -144,15 +144,15 @@ module.exports = {
 		},
 		duplicateParams: {
 			code: '/**\n' +
-			' * Foo\n' +
-			' * @param {string} spec.bar - identifier\n' +
-			' * @param {string} spec.bar - identifier\n' +
-			' */\n' +
-			'model.subclass(function(that, my){\n' +
-			'	my.initialize = function(spec) {\n' +
-			'		my.bar = spec.bar\n' +
-			'	};\n' +
-			'})',
+				' * Foo\n' +
+				' * @param {string} spec.bar - identifier\n' +
+				' * @param {string} spec.bar - identifier\n' +
+				' */\n' +
+				'model.subclass(function(that, my){\n' +
+				'	my.initialize = function(spec) {\n' +
+				'		my.bar = spec.bar\n' +
+				'	};\n' +
+				'})',
 			errors: [
 				{
 					message: 'Duplicate JSDoc parameter \'spec.bar\'.',
@@ -162,15 +162,15 @@ module.exports = {
 		},
 		duplicateParamsDestructuring: {
 			code: '/**\n' +
-			' * Foo\n' +
-			' * @param {string} spec.bar - identifier\n' +
-			' * @param {string} spec.bar - identifier\n' +
-			' */\n' +
-			'model.subclass(function(that, my){\n' +
-			'	my.initialize = function({bar}) {\n' +
-			'		my.bar = bar\n' +
-			'	};\n' +
-			'})',
+				' * Foo\n' +
+				' * @param {string} spec.bar - identifier\n' +
+				' * @param {string} spec.bar - identifier\n' +
+				' */\n' +
+				'model.subclass(function(that, my){\n' +
+				'	my.initialize = function({bar}) {\n' +
+				'		my.bar = bar\n' +
+				'	};\n' +
+				'})',
 			errors: [
 				{
 					message: 'Duplicate JSDoc parameter \'spec.bar\'.',
@@ -180,11 +180,11 @@ module.exports = {
 		},
 		innerComment: {
 			code: 'model.subclass(function(that){\n' +
-			'	/**\n' +
-			'	 * foo\n' +
-			'	*/\n' +
-			'	that.foo = function(){}\n' +
-			'})',
+				'	/**\n' +
+				'	 * foo\n' +
+				'	*/\n' +
+				'	that.foo = function(){}\n' +
+				'})',
 			errors: [
 				{
 					message: "Missing JSDoc comment.",
