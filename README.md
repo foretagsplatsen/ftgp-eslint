@@ -72,7 +72,7 @@ mocha tests/lib/rules/only-literal-polyglots.js  --reporter progress
 
 Add a new rule with [Yeoman's generator-eslint](https://www.npmjs.com/package/generator-eslint).
 
-Release a new version by:
+## Release a new version by:
 1. running the tests
 1. changing the `version` property in `package.json`
 1. running `npm publish`
