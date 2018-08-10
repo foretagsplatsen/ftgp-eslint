@@ -713,23 +713,23 @@ ruleTester.run("indent", rule, {
 			parserOptions: {ecmaVersion: 6}
 		},
 		{
-			code: "const abc = 5,\n" +
-			"      c = 2,\n" +
-			"      xyz = \n" +
+			code: "const abc0 = 5,\n" +
+			"      c0 = 2,\n" +
+			"      xyz0 = \n" +
 			"      {\n" +
 			"        a: 1,\n" +
 			"        b: 2\n" +
 			"      };\n" +
-			"let abc = 5,\n" +
-			"  c = 2,\n" +
-			"  xyz = \n" +
+			"let abc1 = 5,\n" +
+			"  c1 = 2,\n" +
+			"  xyz1 = \n" +
 			"  {\n" +
 			"    a: 1,\n" +
 			"    b: 2\n" +
 			"  };\n" +
-			"var abc = 5,\n" +
-			"    c = 2,\n" +
-			"    xyz = \n" +
+			"var abc2 = 5,\n" +
+			"    c2 = 2,\n" +
+			"    xyz2 = \n" +
 			"    {\n" +
 			"      a: 1,\n" +
 			"      b: 2\n" +
@@ -1762,22 +1762,22 @@ ruleTester.run("indent", rule, {
 			])
 		},
 		{
-			code: "var a = new Test({\n" +
+			code: "var a0 = new Test({\n" +
 			"      a: 1\n" +
 			"    }),\n" +
-			"    b = 4;\n" +
-			"const a = new Test({\n" +
+			"    b0 = 4;\n" +
+			"const a1 = new Test({\n" +
 			"      a: 1\n" +
 			"    }),\n" +
-			"    b = 4;\n",
-			output: "var a = new Test({\n" +
+			"    b1 = 4;\n",
+			output: "var a0 = new Test({\n" +
 			"      a: 1\n" +
 			"    }),\n" +
-			"    b = 4;\n" +
-			"const a = new Test({\n" +
+			"    b0 = 4;\n" +
+			"const a1 = new Test({\n" +
 			"    a: 1\n" +
 			"  }),\n" +
-			"  b = 4;\n",
+			"  b1 = 4;\n",
 			options: [2, {VariableDeclarator: {var: 2}}],
 			parserOptions: {ecmaVersion: 6},
 			errors: expectedErrors([
