@@ -46,9 +46,14 @@ Then configure the rules you want to use under the rules section.
 ## Supported Rules
 
 - ensure-super-calls-in-initialize: see [documentation](./docs/rules/ensure-super-calls-in-initialize.md).
+- no-class-name-array-nesting: [documentation](./docs/rules/no-class-name-array-nesting.md).
+- no-class-name-template: [documentation](./docs/rules/no-class-name-template.md).
+- no-class-name-ternary: [documentation](./docs/rules/no-class-name-ternary.md).
+- no-class-name-useless: [documentation](./docs/rules/no-class-name-useless.md).
 - no-concatenated-polyglots: see [documentation](./docs/rules/no-concatenated-polyglots.md).
 - no-untrimmed-polyglots: see [documentation](./docs/rules/no-untrimmed-polyglots.md).
 - only-literal-polyglots: see [documentation](./docs/rules/only-literal-polyglots.md).
+- only-single-class-name-in-array: see [documentation](./docs/rules/only-single-class-name-in-array.md).
 - require-class-comment: see [documentation](./docs/rules/require-class-comment.md).
 
 ## Contributing
