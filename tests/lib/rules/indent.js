@@ -667,7 +667,7 @@ ruleTester.run("indent", rule, {
 		{
 			code: "import {addons} from 'react/addons'\nimport React from 'react'",
 			options: [2],
-			parserOptions: {sourceType: "module"}
+			parserOptions: {"ecmaVersion": 2021, sourceType: "module"}
 		},
 		{
 			code: "var a = 1,\n" +
@@ -781,7 +781,7 @@ ruleTester.run("indent", rule, {
 			"    b: argument\n" +
 			"  });\n" +
 			"};",
-			parserOptions: {sourceType: "module"},
+			parserOptions: {"ecmaVersion": 2021, sourceType: "module"},
 			options: [2]
 		},
 		{
@@ -791,7 +791,7 @@ ruleTester.run("indent", rule, {
 			"                        padding=defaultPadding) {\n" +
 			"  // ... function body, indented two spaces\n" +
 			"}\n",
-			parserOptions: {sourceType: "module"},
+			parserOptions: {"ecmaVersion": 2021, sourceType: "module"},
 			options: [2]
 		},
 		{
