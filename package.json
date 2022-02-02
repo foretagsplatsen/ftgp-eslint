@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "doctrine": "^3.0.0",
-    "requireindex": "~1.1.0"
+    "requireindex": "~1.2.0"
   },
   "devDependencies": {
     "eslint": ">= 8",
