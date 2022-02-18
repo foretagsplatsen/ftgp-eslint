@@ -13,7 +13,6 @@
     "test": "mocha tests/lib/**/*.js --reporter progress"
   },
   "dependencies": {
-    "doctrine": "^3.0.0",
     "requireindex": "~1.2.0"
   },
   "devDependencies": {
