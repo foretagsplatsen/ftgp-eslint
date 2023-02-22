@@ -10,6 +10,7 @@
   "author": "Benjamin Van Ryseghem",
   "main": "lib/index.js",
   "scripts": {
+    "lint:js": "eslint --report-unused-disable-directives .",
     "test": "mocha tests/lib/**/*.js --reporter progress"
   },
   "dependencies": {
