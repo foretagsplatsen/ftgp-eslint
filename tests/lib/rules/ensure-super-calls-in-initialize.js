@@ -11,7 +11,6 @@
 //------------------------------------------------------------------------------
 
 var rule = require("../../../lib/rules/ensure-super-calls-in-initialize"),
-
 	RuleTester = require("eslint").RuleTester;
 
 //------------------------------------------------------------------------------
@@ -20,14 +19,13 @@ var rule = require("../../../lib/rules/ensure-super-calls-in-initialize"),
 
 var ruleTester = new RuleTester();
 ruleTester.run("ensure-super-calls-in-initialize", rule, {
-
 	valid: [
 		{
-			code: "my.initialize = function(spec) {my.super(spec);}"
+			code: "my.initialize = function(spec) {my.super(spec);}",
 		},
 		{
-			code: "my.initialize = function(spec) {var a = 1; my.super(spec); return a;}"
-		}
+			code: "my.initialize = function(spec) {var a = 1; my.super(spec); return a;}",
+		},
 	],
 
 	invalid: [
@@ -36,27 +34,27 @@ ruleTester.run("ensure-super-calls-in-initialize", rule, {
 			errors: [
 				{
 					message: "super call not performed in `my.initialize`.",
-					type: "ExpressionStatement"
-				}
-			]
+					type: "ExpressionStatement",
+				},
+			],
 		},
 		{
 			code: "my.initialize = function(spec) {var a = 1; return a;}",
 			errors: [
 				{
 					message: "super call not performed in `my.initialize`.",
-					type: "ExpressionStatement"
-				}
-			]
+					type: "ExpressionStatement",
+				},
+			],
 		},
 		{
 			code: "my.initialize = function(spec) {my.super();}",
 			errors: [
 				{
 					message: "spec argument missing from super call.",
-					type: "CallExpression"
-				}
-			]
-		}
-	]
+					type: "CallExpression",
+				},
+			],
+		},
+	],
 });

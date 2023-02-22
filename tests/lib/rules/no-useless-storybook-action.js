@@ -5,13 +5,11 @@
  * See LICENSE file in root directory for full license.
  */
 
-
 //------------------------------------------------------------------------------
 // Requirements
 //------------------------------------------------------------------------------
 
 let rule = require("../../../lib/rules/no-useless-storybook-action"),
-
 	RuleTester = require("eslint").RuleTester;
 
 //------------------------------------------------------------------------------
@@ -22,7 +20,6 @@ let ruleTester = new RuleTester();
 let parserOptions = { ecmaVersion: 6, sourceType: "module" };
 
 ruleTester.run("no-useless-storybook-action", rule, {
-
 	valid: [
 		{
 			code: `export default {
@@ -43,7 +40,7 @@ ruleTester.run("no-useless-storybook-action", rule, {
 \t},
 };`,
 			parserOptions,
-		}
+		},
 	],
 
 	invalid: [
@@ -58,13 +55,14 @@ ruleTester.run("no-useless-storybook-action", rule, {
 			parserOptions,
 			options: [
 				{
-					pattern: "^when[A-Z].*|Callback$"
-				}
+					pattern: "^when[A-Z].*|Callback$",
+				},
 			],
 			errors: [
 				{
-					message: "The action is already documented by the framework",
-					type: "CallExpression"
+					message:
+						"The action is already documented by the framework",
+					type: "CallExpression",
 				},
 			],
 			output: `export default {
@@ -86,13 +84,14 @@ ruleTester.run("no-useless-storybook-action", rule, {
 			parserOptions,
 			options: [
 				{
-					pattern: "^when[A-Z].*|Callback$"
-				}
+					pattern: "^when[A-Z].*|Callback$",
+				},
 			],
 			errors: [
 				{
-					message: "The action is already documented by the framework",
-					type: "CallExpression"
+					message:
+						"The action is already documented by the framework",
+					type: "CallExpression",
 				},
 			],
 			output: `export default {
@@ -114,13 +113,14 @@ ruleTester.run("no-useless-storybook-action", rule, {
 			parserOptions,
 			options: [
 				{
-					pattern: "^when[A-Z].*|Callback$"
-				}
+					pattern: "^when[A-Z].*|Callback$",
+				},
 			],
 			errors: [
 				{
-					message: "The action is already documented by the framework",
-					type: "CallExpression"
+					message:
+						"The action is already documented by the framework",
+					type: "CallExpression",
 				},
 			],
 			output: `export default {
@@ -143,13 +143,14 @@ ruleTester.run("no-useless-storybook-action", rule, {
 			parserOptions,
 			options: [
 				{
-					pattern: "^when[A-Z].*|Callback$"
-				}
+					pattern: "^when[A-Z].*|Callback$",
+				},
 			],
 			errors: [
 				{
-					message: "The action is already documented by the framework",
-					type: "CallExpression"
+					message:
+						"The action is already documented by the framework",
+					type: "CallExpression",
 				},
 			],
 			output: `export default {
@@ -160,6 +161,6 @@ ruleTester.run("no-useless-storybook-action", rule, {
 \t\tfoo: 42,
 \t},
 };`,
-		}
+		},
 	],
 });

@@ -28,12 +28,13 @@ ruleTester.run("only-single-class-name-in-array", rule, {
 			code: `f({className: ["foo bar"]})`,
 			errors: [
 				{
-					message: "Only one class per string allowed inside an array.",
-					type: "Literal"
+					message:
+						"Only one class per string allowed inside an array.",
+					type: "Literal",
 				},
 			],
 			parserOptions: { ecmaVersion: 6 },
-			output: `f({className: ["foo", "bar"]})`
+			output: `f({className: ["foo", "bar"]})`,
 		},
-	]
+	],
 });

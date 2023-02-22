@@ -19,7 +19,7 @@ var rule = require("../../../lib/rules/no-class-name-array-nesting"),
 var ruleTester = new RuleTester();
 ruleTester.run("no-class-name-array-nesting", rule, {
 	valid: [
-		{ code: "f({className: \"foo\"})" },
+		{ code: 'f({className: "foo"})' },
 		{ code: `f({className: ['foo']})` },
 	],
 
@@ -28,27 +28,30 @@ ruleTester.run("no-class-name-array-nesting", rule, {
 			code: `f({className: ["foo", ["bar"]]})`,
 			errors: [
 				{
-					message: "Array nesting is not allowed in class name value.",
-					type: "ArrayExpression"
+					message:
+						"Array nesting is not allowed in class name value.",
+					type: "ArrayExpression",
 				},
 			],
 			parserOptions: { ecmaVersion: 6 },
-			output: `f({className: ["foo", "bar"]})`
+			output: `f({className: ["foo", "bar"]})`,
 		},
 		{
 			code: `f({className: ["foo", ["bar"], ["baz"]]})`,
 			errors: [
 				{
-					message: "Array nesting is not allowed in class name value.",
-					type: "ArrayExpression"
+					message:
+						"Array nesting is not allowed in class name value.",
+					type: "ArrayExpression",
 				},
 				{
-					message: "Array nesting is not allowed in class name value.",
-					type: "ArrayExpression"
+					message:
+						"Array nesting is not allowed in class name value.",
+					type: "ArrayExpression",
 				},
 			],
 			parserOptions: { ecmaVersion: 6 },
-			output: `f({className: ["foo", "bar", "baz"]})`
-		}
-	]
+			output: `f({className: ["foo", "bar", "baz"]})`,
+		},
+	],
 });

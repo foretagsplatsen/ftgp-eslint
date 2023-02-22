@@ -19,104 +19,112 @@ var rule = require("../../../lib/rules/no-class-name-ternary.js"),
 var ruleTester = new RuleTester();
 ruleTester.run("no-class-name-ternary", rule, {
 	valid: [
-		{ code: "f({className: \"foo\"})" },
+		{ code: 'f({className: "foo"})' },
 		{ code: `f({className: ['foo']})` },
 		{ code: `f({className: {foo: true}})` },
 	],
 
 	invalid: [
 		{
-			code: "f({className: isDisabled ? \"disabled\" : \"\"})",
+			code: 'f({className: isDisabled ? "disabled" : ""})',
 			errors: [
 				{
-					message: "Conditionals are not accepted as class name value.",
-					type: "ConditionalExpression"
+					message:
+						"Conditionals are not accepted as class name value.",
+					type: "ConditionalExpression",
 				},
 			],
 			parserOptions: { ecmaVersion: 6 },
-			output: `f({className: {"disabled": isDisabled}})`
+			output: `f({className: {"disabled": isDisabled}})`,
 		},
 		{
-			code: "f({fooboo: isDisabled ? \"disabled\" : \"\"})",
+			code: 'f({fooboo: isDisabled ? "disabled" : ""})',
 			options: [
 				{
-					keywords: ["fooboo"]
-				}
+					keywords: ["fooboo"],
+				},
 			],
 			errors: [
 				{
-					message: "Conditionals are not accepted as class name value.",
-					type: "ConditionalExpression"
+					message:
+						"Conditionals are not accepted as class name value.",
+					type: "ConditionalExpression",
 				},
 			],
 			parserOptions: { ecmaVersion: 6 },
-			output: `f({fooboo: {"disabled": isDisabled}})`
+			output: `f({fooboo: {"disabled": isDisabled}})`,
 		},
 		{
-			code: "f({className: isDisabled ? \"\" : \"enabled\"})",
+			code: 'f({className: isDisabled ? "" : "enabled"})',
 			errors: [
 				{
-					message: "Conditionals are not accepted as class name value.",
-					type: "ConditionalExpression"
+					message:
+						"Conditionals are not accepted as class name value.",
+					type: "ConditionalExpression",
 				},
 			],
 			parserOptions: { ecmaVersion: 6 },
-			output: `f({className: {"enabled": !(isDisabled)}})`
+			output: `f({className: {"enabled": !(isDisabled)}})`,
 		},
 		{
-			code: "f({className: isDisabled ? \"disabled\" : \"enabled\"})",
+			code: 'f({className: isDisabled ? "disabled" : "enabled"})',
 			errors: [
 				{
-					message: "Conditionals are not accepted as class name value.",
-					type: "ConditionalExpression"
+					message:
+						"Conditionals are not accepted as class name value.",
+					type: "ConditionalExpression",
 				},
 			],
 			parserOptions: { ecmaVersion: 6 },
-			output: `f({className: isDisabled ? \"disabled\" : \"enabled\"})`
+			output: `f({className: isDisabled ? \"disabled\" : \"enabled\"})`,
 		},
 		{
-			code: "f({className: [isDisabled ? \"disabled\" : \"\"]})",
+			code: 'f({className: [isDisabled ? "disabled" : ""]})',
 			errors: [
 				{
-					message: "Conditionals are not accepted as class name value.",
-					type: "ConditionalExpression"
+					message:
+						"Conditionals are not accepted as class name value.",
+					type: "ConditionalExpression",
 				},
 			],
 			parserOptions: { ecmaVersion: 6 },
-			output: `f({className: [{"disabled": isDisabled}]})`
+			output: `f({className: [{"disabled": isDisabled}]})`,
 		},
 		{
 			code: `f({className: ["foo", [isDisabled ? "disabled" : ""]]})`,
 			errors: [
 				{
-					message: "Conditionals are not accepted as class name value.",
-					type: "ConditionalExpression"
+					message:
+						"Conditionals are not accepted as class name value.",
+					type: "ConditionalExpression",
 				},
 			],
 			parserOptions: { ecmaVersion: 6 },
-			output: `f({className: ["foo", [{"disabled": isDisabled}]]})`
+			output: `f({className: ["foo", [{"disabled": isDisabled}]]})`,
 		},
 		{
 			code: `f({className: ["foo", [isDisabled ? foo() : ""]]})`,
 			errors: [
 				{
-					message: "Conditionals are not accepted as class name value.",
-					type: "ConditionalExpression"
+					message:
+						"Conditionals are not accepted as class name value.",
+					type: "ConditionalExpression",
 				},
 			],
 			parserOptions: { ecmaVersion: 6 },
-			output: `f({className: ["foo", [{[foo()]: isDisabled}]]})`
+			output: `f({className: ["foo", [{[foo()]: isDisabled}]]})`,
 		},
 		{
 			code: `f({className: my.done ? "" : " active"})`,
 			errors: [
 				{
-					message: "Conditionals are not accepted as class name value.",
-					type: "ConditionalExpression"
+					message:
+						"Conditionals are not accepted as class name value.",
+					type: "ConditionalExpression",
 				},
 			],
 			parserOptions: { ecmaVersion: 6 },
-			output: `f({className: {"active": !(my.done)}})`
+			output: `f({className: {"active": !(my.done)}})`,
 		},
-	]
+	],
 });

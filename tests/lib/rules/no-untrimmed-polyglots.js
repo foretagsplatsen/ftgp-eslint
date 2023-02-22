@@ -11,7 +11,6 @@
 //------------------------------------------------------------------------------
 
 var rule = require("../../../lib/rules/no-untrimmed-polyglots"),
-
 	RuleTester = require("eslint").RuleTester;
 
 //------------------------------------------------------------------------------
@@ -20,14 +19,13 @@ var rule = require("../../../lib/rules/no-untrimmed-polyglots"),
 
 var ruleTester = new RuleTester();
 ruleTester.run("no-untrimmed-polyglots", rule, {
-
 	valid: [
 		{
-			code: "_('foo')"
+			code: "_('foo')",
 		},
 		{
-			code: "_('foo bar')"
-		}
+			code: "_('foo bar')",
+		},
 	],
 
 	invalid: [
@@ -36,27 +34,27 @@ ruleTester.run("no-untrimmed-polyglots", rule, {
 			errors: [
 				{
 					message: "' foo' has leading/trailing whitespace.",
-					type: "CallExpression"
-				}
-			]
+					type: "CallExpression",
+				},
+			],
 		},
 		{
 			code: "_('foo ')",
 			errors: [
 				{
 					message: "'foo ' has leading/trailing whitespace.",
-					type: "CallExpression"
-				}
-			]
+					type: "CallExpression",
+				},
+			],
 		},
 		{
 			code: "_(' foo ')",
 			errors: [
 				{
 					message: "' foo ' has leading/trailing whitespace.",
-					type: "CallExpression"
-				}
-			]
-		}
-	]
+					type: "CallExpression",
+				},
+			],
+		},
+	],
 });

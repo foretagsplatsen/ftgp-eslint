@@ -11,7 +11,6 @@
 //------------------------------------------------------------------------------
 
 var rule = require("../../../lib/rules/no-concatenated-polyglots"),
-
 	RuleTester = require("eslint").RuleTester;
 
 //------------------------------------------------------------------------------
@@ -20,14 +19,13 @@ var rule = require("../../../lib/rules/no-concatenated-polyglots"),
 
 var ruleTester = new RuleTester();
 ruleTester.run("no-concatenated-polyglots", rule, {
-
 	valid: [
 		{
-			code: "_('text')"
+			code: "_('text')",
 		},
 		{
-			code: "_('text more text')"
-		}
+			code: "_('text more text')",
+		},
 	],
 
 	invalid: [
@@ -35,32 +33,36 @@ ruleTester.run("no-concatenated-polyglots", rule, {
 			code: "_('text') + 'more text'",
 			errors: [
 				{
-					message: "Replace concatenation of polyglots with template.",
-					type: "CallExpression"
-				}
-			]
+					message:
+						"Replace concatenation of polyglots with template.",
+					type: "CallExpression",
+				},
+			],
 		},
 		{
 			code: "_('text') + _('more text')",
 			errors: [
 				{
-					message: "Replace concatenation of polyglots with template.",
-					type: "CallExpression"
+					message:
+						"Replace concatenation of polyglots with template.",
+					type: "CallExpression",
 				},
 				{
-					message: "Replace concatenation of polyglots with template.",
-					type: "CallExpression"
-				}
-			]
+					message:
+						"Replace concatenation of polyglots with template.",
+					type: "CallExpression",
+				},
+			],
 		},
 		{
 			code: "_('text') + more;",
 			errors: [
 				{
-					message: "Replace concatenation of polyglots with template.",
-					type: "CallExpression"
-				}
-			]
-		}
-	]
+					message:
+						"Replace concatenation of polyglots with template.",
+					type: "CallExpression",
+				},
+			],
+		},
+	],
 });
