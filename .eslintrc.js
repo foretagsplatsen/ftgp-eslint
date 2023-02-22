@@ -13,6 +13,8 @@ module.exports = {
 		ecmaVersion: "latest",
 		sourceType: "script",
 	},
-	rules: {},
+	rules: {
+		"object-shorthand": ["error"],
+	},
 	ignorePatterns: [],
 };
