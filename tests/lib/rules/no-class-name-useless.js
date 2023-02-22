@@ -54,6 +54,7 @@ ruleTester.run("no-class-name-useless", rule, {
 			parserOptions: { ecmaVersion: 6 },
 			output: `f({className: "foo 54"})`,
 		},
+		// eslint-disable-next-line eslint-plugin/consistent-output -- The rule doesn't have any fix in this case
 		{
 			code: `f({className: []})`,
 			errors: [
@@ -152,6 +153,7 @@ ruleTester.run("no-class-name-useless", rule, {
 			parserOptions: { ecmaVersion: 6 },
 			output: `f({className: ["foo", ]})`,
 		},
+		// eslint-disable-next-line eslint-plugin/consistent-output -- The rule doesn't have any fix in this case
 		{
 			code: `f({className: {}})`,
 			errors: [
