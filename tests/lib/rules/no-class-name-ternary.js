@@ -76,7 +76,7 @@ ruleTester.run("no-class-name-ternary", rule, {
 				},
 			],
 			parserOptions: { ecmaVersion: 6 },
-			output: `f({className: isDisabled ? \"disabled\" : \"enabled\"})`,
+			output: `f({className: isDisabled ? "disabled" : "enabled"})`,
 		},
 		{
 			code: 'f({className: [isDisabled ? "disabled" : ""]})',
