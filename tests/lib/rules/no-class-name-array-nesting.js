@@ -21,6 +21,10 @@ ruleTester.run("no-class-name-array-nesting", rule, {
 	valid: [
 		{ code: 'f({className: "foo"})' },
 		{ code: `f({className: ['foo']})` },
+		{
+			code: `f({cssClass: ['foo']})`,
+			options: [{ keywords: ["cssClass"] }],
+		},
 	],
 
 	invalid: [
@@ -52,6 +56,19 @@ ruleTester.run("no-class-name-array-nesting", rule, {
 			],
 			parserOptions: { ecmaVersion: 6 },
 			output: `f({className: ["foo", "bar", "baz"]})`,
+		},
+		{
+			code: `f({cssClass: ["foo", ["bar"]]})`,
+			options: [{ keywords: ["cssClass"] }],
+			errors: [
+				{
+					message:
+						"Array nesting is not allowed in class name value.",
+					type: "ArrayExpression",
+				},
+			],
+			parserOptions: { ecmaVersion: 6 },
+			output: `f({cssClass: ["foo", "bar"]})`,
 		},
 	],
 });

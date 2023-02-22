@@ -23,6 +23,10 @@ ruleTester.run("no-class-name-useless", rule, {
 		{ code: 'f({className: "foo bar"})' },
 		{ code: `f({className: ['foo', {bar: baz}]})` },
 		{ code: `f({className: {foo: foobar}})` },
+		{
+			code: `f({cssClass: {foo: foobar}})`,
+			options: [{ keywords: ["cssClass"] }],
+		},
 	],
 
 	invalid: [
@@ -179,6 +183,19 @@ ruleTester.run("no-class-name-useless", rule, {
 			],
 			parserOptions: { ecmaVersion: 6 },
 			output: `f({className: {"foo": bar()}})`,
+		},
+		{
+			code: `f({cssClass: ["foo", "bar"]})`,
+			options: [{ keywords: ["cssClass"] }],
+			errors: [
+				{
+					message:
+						"Arrays with only literals as elements are useless.",
+					type: "ArrayExpression",
+				},
+			],
+			parserOptions: { ecmaVersion: 6 },
+			output: `f({cssClass: "foo bar"})`,
 		},
 	],
 });

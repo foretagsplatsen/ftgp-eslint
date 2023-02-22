@@ -21,6 +21,10 @@ ruleTester.run("only-single-class-name-in-array", rule, {
 	valid: [
 		{ code: `f({className: ["foo"]})` },
 		{ code: `f({className: 'foo bar'})` },
+		{
+			code: `f({cssClass: 'foo bar'})`,
+			options: [{ keywords: ["cssClass"] }],
+		},
 	],
 
 	invalid: [
@@ -35,6 +39,19 @@ ruleTester.run("only-single-class-name-in-array", rule, {
 			],
 			parserOptions: { ecmaVersion: 6 },
 			output: `f({className: ["foo", "bar"]})`,
+		},
+		{
+			code: `f({cssClass: ["foo bar"]})`,
+			options: [{ keywords: ["cssClass"] }],
+			errors: [
+				{
+					message:
+						"Only one class per string allowed inside an array.",
+					type: "Literal",
+				},
+			],
+			parserOptions: { ecmaVersion: 6 },
+			output: `f({cssClass: ["foo", "bar"]})`,
 		},
 	],
 });

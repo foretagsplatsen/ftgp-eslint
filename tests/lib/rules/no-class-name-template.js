@@ -21,6 +21,7 @@ ruleTester.run("no-class-name-template", rule, {
 	valid: [
 		{ code: 'f({className: "foo"})' },
 		{ code: `f({className: 'foo'})` },
+		{ code: `f({cssClass: 'foo'})`, options: [{ keywords: ["cssClass"] }] },
 		{
 			code: "f({className: `foo-${plip}`})",
 			parserOptions: { ecmaVersion: 6 },
@@ -157,6 +158,19 @@ ruleTester.run("no-class-name-template", rule, {
 			],
 			parserOptions: { ecmaVersion: 6 },
 			output: `f({fooboo: [["foo", isDisabled ? "disabled" : ""]]})`,
+		},
+		{
+			code: "f({cssClass: `foo bar`})",
+			options: [{ keywords: ["cssClass"] }],
+			parserOptions: { ecmaVersion: 6 },
+			errors: [
+				{
+					message:
+						"Template strings with multiple classes are not accepted as class name value.",
+					type: "TemplateLiteral",
+				},
+			],
+			output: `f({cssClass: ["foo", "bar"]})`,
 		},
 	],
 });
