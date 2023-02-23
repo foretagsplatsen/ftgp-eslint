@@ -33,8 +33,9 @@ ruleTester.run("no-untrimmed-polyglots", rule, {
 			code: "_(' foo')",
 			errors: [
 				{
-					message: "' foo' has leading/trailing whitespace.",
+					messageId: "message",
 					type: "CallExpression",
+					data: { text: " foo" },
 				},
 			],
 		},
@@ -42,8 +43,9 @@ ruleTester.run("no-untrimmed-polyglots", rule, {
 			code: "_('foo ')",
 			errors: [
 				{
-					message: "'foo ' has leading/trailing whitespace.",
+					messageId: "message",
 					type: "CallExpression",
+					data: { text: "foo " },
 				},
 			],
 		},
@@ -51,8 +53,9 @@ ruleTester.run("no-untrimmed-polyglots", rule, {
 			code: "_(' foo ')",
 			errors: [
 				{
-					message: "' foo ' has leading/trailing whitespace.",
+					messageId: "message",
 					type: "CallExpression",
+					data: { text: " foo " },
 				},
 			],
 		},
