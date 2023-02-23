@@ -33,7 +33,7 @@ ruleTester.run("ensure-super-calls-in-initialize", rule, {
 			code: "my.initialize = function(spec) {}",
 			errors: [
 				{
-					message: "super call not performed in `my.initialize`.",
+					messageId: "missing-super-call",
 					type: "ExpressionStatement",
 				},
 			],
@@ -42,7 +42,7 @@ ruleTester.run("ensure-super-calls-in-initialize", rule, {
 			code: "my.initialize = function(spec) {var a = 1; return a;}",
 			errors: [
 				{
-					message: "super call not performed in `my.initialize`.",
+					messageId: "missing-super-call",
 					type: "ExpressionStatement",
 				},
 			],
@@ -51,7 +51,7 @@ ruleTester.run("ensure-super-calls-in-initialize", rule, {
 			code: "my.initialize = function(spec) {my.super();}",
 			errors: [
 				{
-					message: "spec argument missing from super call.",
+					messageId: "missing-spec-in-super",
 					type: "CallExpression",
 				},
 			],

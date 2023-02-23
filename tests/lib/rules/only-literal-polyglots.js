@@ -18,6 +18,7 @@ var rule = require("../../../lib/rules/only-literal-polyglots"),
 //------------------------------------------------------------------------------
 
 var ruleTester = new RuleTester();
+
 ruleTester.run("only-literal-polyglots", rule, {
 	valid: [
 		{
@@ -30,7 +31,7 @@ ruleTester.run("only-literal-polyglots", rule, {
 			code: "_()",
 			errors: [
 				{
-					message: "Polyglot should have at least one argument",
+					messageId: "one-argument",
 					type: "CallExpression",
 				},
 			],
@@ -39,7 +40,7 @@ ruleTester.run("only-literal-polyglots", rule, {
 			code: "_(myvar)",
 			errors: [
 				{
-					message: "No variable should be passed. Inline `myvar`",
+					messageId: "no-variable",
 					type: "CallExpression",
 				},
 			],
@@ -48,7 +49,7 @@ ruleTester.run("only-literal-polyglots", rule, {
 			code: "_('foo' + 'bar')",
 			errors: [
 				{
-					message: "Replace concatenation of polyglots with template",
+					messageId: "no-concatenation",
 					type: "CallExpression",
 				},
 			],
@@ -57,7 +58,7 @@ ruleTester.run("only-literal-polyglots", rule, {
 			code: "_('foo' || 'bar')",
 			errors: [
 				{
-					message: "Replace concatenation of polyglots with template",
+					messageId: "no-concatenation",
 					type: "CallExpression",
 				},
 			],
@@ -66,8 +67,7 @@ ruleTester.run("only-literal-polyglots", rule, {
 			code: "_('foo' - 'bar')",
 			errors: [
 				{
-					message:
-						"It looks like there is something fishy with the polyglot",
+					messageId: "fishy",
 					type: "CallExpression",
 				},
 			],
@@ -76,8 +76,7 @@ ruleTester.run("only-literal-polyglots", rule, {
 			code: "_(my.bar)",
 			errors: [
 				{
-					message:
-						"Translating a member looks like a bad idea. Maybe a switch case could do it?",
+					messageId: "no-member-translation",
 					type: "CallExpression",
 				},
 			],
@@ -86,8 +85,9 @@ ruleTester.run("only-literal-polyglots", rule, {
 			code: "_('foo' ? 'bar' : 'baz')",
 			errors: [
 				{
-					message: "Unknown Type: ConditionalExpression",
+					messageId: "unknown-type",
 					type: "CallExpression",
+					data: { type: "ConditionalExpression" },
 				},
 			],
 		},

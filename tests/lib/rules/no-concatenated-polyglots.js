@@ -18,6 +18,12 @@ var rule = require("../../../lib/rules/no-concatenated-polyglots"),
 //------------------------------------------------------------------------------
 
 var ruleTester = new RuleTester();
+
+const error = {
+	messageId: "message",
+	type: "CallExpression",
+};
+
 ruleTester.run("no-concatenated-polyglots", rule, {
 	valid: [
 		{
@@ -31,38 +37,15 @@ ruleTester.run("no-concatenated-polyglots", rule, {
 	invalid: [
 		{
 			code: "_('text') + 'more text'",
-			errors: [
-				{
-					message:
-						"Replace concatenation of polyglots with template.",
-					type: "CallExpression",
-				},
-			],
+			errors: [error],
 		},
 		{
 			code: "_('text') + _('more text')",
-			errors: [
-				{
-					message:
-						"Replace concatenation of polyglots with template.",
-					type: "CallExpression",
-				},
-				{
-					message:
-						"Replace concatenation of polyglots with template.",
-					type: "CallExpression",
-				},
-			],
+			errors: [error, error],
 		},
 		{
 			code: "_('text') + more;",
-			errors: [
-				{
-					message:
-						"Replace concatenation of polyglots with template.",
-					type: "CallExpression",
-				},
-			],
+			errors: [error],
 		},
 	],
 });

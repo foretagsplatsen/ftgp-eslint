@@ -16,8 +16,9 @@ let rule = require("../../../lib/rules/ensure-storybook-title"),
 // Tests
 //------------------------------------------------------------------------------
 
-let ruleTester = new RuleTester();
-let parserOptions = { ecmaVersion: 6, sourceType: "module" };
+let ruleTester = new RuleTester({
+	parserOptions: { ecmaVersion: 6, sourceType: "module" },
+});
 
 ruleTester.run("ensure-storybook-title", rule, {
 	valid: [
@@ -27,7 +28,6 @@ ruleTester.run("ensure-storybook-title", rule, {
 };`,
 			filename:
 				"fooboo/Client/js/accounting/widgets/ForecastCellInfoWidget/ForecastCellInfoWidget.js",
-			parserOptions,
 		},
 		{
 			code: `export default {
@@ -35,7 +35,6 @@ ruleTester.run("ensure-storybook-title", rule, {
 };`,
 			filename:
 				"/Users/fooboo/work/src/accounting/widgets/ForecastCellInfoWidget/ForecastCellInfoWidget.js",
-			parserOptions,
 			options: [
 				{
 					root: "work/src",
@@ -51,10 +50,9 @@ ruleTester.run("ensure-storybook-title", rule, {
 };`,
 			filename:
 				"fooboo/Client/js/accounting/core/ForecastCellInfoWidget/ForecastCellInfoWidget.js",
-			parserOptions,
 			errors: [
 				{
-					message: "CSF title not matching the file path",
+					messageId: "non-matching-title",
 					type: "Literal",
 				},
 			],
@@ -67,10 +65,9 @@ ruleTester.run("ensure-storybook-title", rule, {
 };`,
 			filename:
 				"fooboo/Client/js/accounting/widgets/ForecastCellInfoWidget/ForecastCellInfoWidget.js",
-			parserOptions,
 			errors: [
 				{
-					message: "CSF has no title",
+					messageId: "missing-title",
 					type: "ObjectExpression",
 				},
 			],

@@ -17,6 +17,14 @@ var rule = require("../../../lib/rules/only-single-class-name-in-array"),
 //------------------------------------------------------------------------------
 
 var ruleTester = new RuleTester();
+
+const errors = [
+	{
+		messageId: "message",
+		type: "Literal",
+	},
+];
+
 ruleTester.run("only-single-class-name-in-array", rule, {
 	valid: [
 		{ code: `f({className: ["foo"]})` },
@@ -30,26 +38,14 @@ ruleTester.run("only-single-class-name-in-array", rule, {
 	invalid: [
 		{
 			code: `f({className: ["foo bar"]})`,
-			errors: [
-				{
-					message:
-						"Only one class per string allowed inside an array.",
-					type: "Literal",
-				},
-			],
+			errors,
 			parserOptions: { ecmaVersion: 6 },
 			output: `f({className: ["foo", "bar"]})`,
 		},
 		{
 			code: `f({cssClass: ["foo bar"]})`,
 			options: [{ keywords: ["cssClass"] }],
-			errors: [
-				{
-					message:
-						"Only one class per string allowed inside an array.",
-					type: "Literal",
-				},
-			],
+			errors,
 			parserOptions: { ecmaVersion: 6 },
 			output: `f({cssClass: ["foo", "bar"]})`,
 		},
