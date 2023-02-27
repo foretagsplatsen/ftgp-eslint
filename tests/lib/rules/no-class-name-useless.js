@@ -16,13 +16,18 @@ var rule = require("../../../lib/rules/no-class-name-useless.js"),
 // Tests
 //------------------------------------------------------------------------------
 
-var ruleTester = new RuleTester();
+var ruleTester = new RuleTester({ parserOptions: { ecmaVersion: 6 } });
+
 ruleTester.run("no-class-name-useless", rule, {
 	valid: [
-		{ code: "f({className: \"foo\"})" },
-		{ code: "f({className: \"foo bar\"})" },
+		{ code: 'f({className: "foo"})' },
+		{ code: 'f({className: "foo bar"})' },
 		{ code: `f({className: ['foo', {bar: baz}]})` },
 		{ code: `f({className: {foo: foobar}})` },
+		{
+			code: `f({cssClass: {foo: foobar}})`,
+			options: [{ keywords: ["cssClass"] }],
+		},
 	],
 
 	invalid: [
@@ -30,153 +35,152 @@ ruleTester.run("no-class-name-useless", rule, {
 			code: `f({className: ["foo", "bar"]})`,
 			errors: [
 				{
-					message: "Arrays with only literals as elements are useless.",
-					type: "ArrayExpression"
+					messageId: "array-with-only-literals",
+					type: "ArrayExpression",
 				},
 			],
-			parserOptions: { ecmaVersion: 6 },
-			output: `f({className: "foo bar"})`
+			output: `f({className: "foo bar"})`,
 		},
 		{
 			code: `f({className: ["foo", 54]})`,
 			errors: [
 				{
-					message: "Arrays with only literals as elements are useless.",
-					type: "ArrayExpression"
+					messageId: "array-with-only-literals",
+					type: "ArrayExpression",
 				},
 			],
-			parserOptions: { ecmaVersion: 6 },
-			output: `f({className: "foo 54"})`
+			output: `f({className: "foo 54"})`,
 		},
+		// eslint-disable-next-line eslint-plugin/consistent-output -- The rule doesn't have any fix in this case
 		{
 			code: `f({className: []})`,
 			errors: [
 				{
-					message: "Empty arrays are useless.",
-					type: "ArrayExpression"
+					messageId: "empty-array",
+					type: "ArrayExpression",
 				},
 			],
-			parserOptions: { ecmaVersion: 6 },
 		},
 		{
 			code: "f({className: [{foo}]})",
 			errors: [
 				{
-					message: "Singleton arrays are useless.",
-					type: "ArrayExpression"
+					messageId: "singleton",
+					type: "ArrayExpression",
 				},
 			],
-			parserOptions: { ecmaVersion: 6 },
-			output: "f({className: {foo}})"
+			output: "f({className: {foo}})",
 		},
 		{
 			code: `f({className: {foo: true}})`,
 			errors: [
 				{
-					message: "Literal values are superfluous.",
-					type: "ObjectExpression"
+					messageId: "superfluous-literal",
+					type: "ObjectExpression",
 				},
 			],
-			parserOptions: { ecmaVersion: 6 },
-			output: `f({className: ["foo"]})`
+			output: `f({className: ["foo"]})`,
 		},
 		{
 			code: `f({className: {foo: true, bar: baz}})`,
 			errors: [
 				{
-					message: "Literal values are superfluous.",
-					type: "ObjectExpression"
+					messageId: "superfluous-literal",
+					type: "ObjectExpression",
 				},
 			],
-			parserOptions: { ecmaVersion: 6 },
-			output: `f({className: ["foo", {bar: baz}]})`
+			output: `f({className: ["foo", {bar: baz}]})`,
 		},
 		{
 			code: `f({className: {foo: false}})`,
 			errors: [
 				{
-					message: "Literal values are superfluous.",
-					type: "ObjectExpression"
+					messageId: "superfluous-literal",
+					type: "ObjectExpression",
 				},
 			],
-			parserOptions: { ecmaVersion: 6 },
-			output: `f({className: {}})`
+			output: `f({className: {}})`,
 		},
 		{
 			code: `f({className: {foo: false, bar: baz}})`,
 			errors: [
 				{
-					message: "Literal values are superfluous.",
-					type: "ObjectExpression"
+					messageId: "superfluous-literal",
+					type: "ObjectExpression",
 				},
 			],
-			parserOptions: { ecmaVersion: 6 },
-			output: `f({className: {bar: baz}})`
+			output: `f({className: {bar: baz}})`,
 		},
 		{
 			code: `f({className: {"foo": "bar"}})`,
 			errors: [
 				{
-					message: "Literal values are superfluous.",
-					type: "ObjectExpression"
+					messageId: "superfluous-literal",
+					type: "ObjectExpression",
 				},
 			],
-			parserOptions: { ecmaVersion: 6 },
-			output: `f({className: ["foo"]})`
+			output: `f({className: ["foo"]})`,
 		},
 		{
 			code: `f({className: {"foo": 42}})`,
 			errors: [
 				{
-					message: "Literal values are superfluous.",
-					type: "ObjectExpression"
+					messageId: "superfluous-literal",
+					type: "ObjectExpression",
 				},
 			],
-			parserOptions: { ecmaVersion: 6 },
-			output: `f({className: ["foo"]})`
+			output: `f({className: ["foo"]})`,
 		},
 		{
 			code: `f({className: ["foo", {}]})`,
 			errors: [
 				{
-					message: "Empty objects are useless.",
-					type: "ObjectExpression"
+					messageId: "empty-object",
+					type: "ObjectExpression",
 				},
 			],
-			parserOptions: { ecmaVersion: 6 },
-			output: `f({className: ["foo", ]})`
+			output: `f({className: ["foo", ]})`,
 		},
+		// eslint-disable-next-line eslint-plugin/consistent-output -- The rule doesn't have any fix in this case
 		{
 			code: `f({className: {}})`,
 			errors: [
 				{
-					message: "Empty objects are useless.",
-					type: "ObjectExpression"
+					messageId: "empty-object",
+					type: "ObjectExpression",
 				},
 			],
-			parserOptions: { ecmaVersion: 6 }
 		},
 		{
 			code: `f({className: " foo"})`,
 			errors: [
 				{
-					message: "No leading/trailing space allowed.",
-					type: "Literal"
+					messageId: "leading-trailing-space",
+					type: "Literal",
 				},
 			],
-			parserOptions: { ecmaVersion: 6 },
-			output: `f({className: "foo"})`
+			output: `f({className: "foo"})`,
 		},
 		{
 			code: `f({className: {" foo": bar()}})`,
 			errors: [
 				{
-					message: "No leading/trailing space allowed.",
-					type: "Literal"
+					messageId: "leading-trailing-space",
+					type: "Literal",
 				},
 			],
-			parserOptions: { ecmaVersion: 6 },
-			output: `f({className: {"foo": bar()}})`
-		}
-	]
+			output: `f({className: {"foo": bar()}})`,
+		},
+		{
+			code: `f({cssClass: ["foo", "bar"]})`,
+			options: [{ keywords: ["cssClass"] }],
+			errors: [
+				{
+					messageId: "array-with-only-literals",
+					type: "ArrayExpression",
+				},
+			],
+			output: `f({cssClass: "foo bar"})`,
+		},
+	],
 });

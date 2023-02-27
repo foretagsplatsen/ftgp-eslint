@@ -11,7 +11,6 @@
 //------------------------------------------------------------------------------
 
 var rule = require("../../../lib/rules/only-literal-polyglots"),
-
 	RuleTester = require("eslint").RuleTester;
 
 //------------------------------------------------------------------------------
@@ -19,12 +18,12 @@ var rule = require("../../../lib/rules/only-literal-polyglots"),
 //------------------------------------------------------------------------------
 
 var ruleTester = new RuleTester();
-ruleTester.run("only-literal-polyglots", rule, {
 
+ruleTester.run("only-literal-polyglots", rule, {
 	valid: [
 		{
-			code: "_('A literal is ok');"
-		}
+			code: "_('A literal is ok');",
+		},
 	],
 
 	invalid: [
@@ -32,64 +31,65 @@ ruleTester.run("only-literal-polyglots", rule, {
 			code: "_()",
 			errors: [
 				{
-					message: "Polyglot should have at least one argument",
-					type: "CallExpression"
-				}
-			]
+					messageId: "one-argument",
+					type: "CallExpression",
+				},
+			],
 		},
 		{
 			code: "_(myvar)",
 			errors: [
 				{
-					message: "No variable should be passed. Inline `myvar`",
-					type: "CallExpression"
-				}
-			]
+					messageId: "no-variable",
+					type: "CallExpression",
+				},
+			],
 		},
 		{
 			code: "_('foo' + 'bar')",
 			errors: [
 				{
-					message: "Replace concatenation of polyglots with template",
-					type: "CallExpression"
-				}
-			]
+					messageId: "no-concatenation",
+					type: "CallExpression",
+				},
+			],
 		},
 		{
 			code: "_('foo' || 'bar')",
 			errors: [
 				{
-					message: "Replace concatenation of polyglots with template",
-					type: "CallExpression"
-				}
-			]
+					messageId: "no-concatenation",
+					type: "CallExpression",
+				},
+			],
 		},
 		{
 			code: "_('foo' - 'bar')",
 			errors: [
 				{
-					message: "It looks like there is something fishy with the polyglot",
-					type: "CallExpression"
-				}
-			]
+					messageId: "fishy",
+					type: "CallExpression",
+				},
+			],
 		},
 		{
 			code: "_(my.bar)",
 			errors: [
 				{
-					message: "Translating a member looks like a bad idea. Maybe a switch case could do it?",
-					type: "CallExpression"
-				}
-			]
+					messageId: "no-member-translation",
+					type: "CallExpression",
+				},
+			],
 		},
 		{
 			code: "_('foo' ? 'bar' : 'baz')",
 			errors: [
 				{
-					message: "Unknown Type: ConditionalExpression",
-					type: "CallExpression"
-				}
-			]
-		}
-	]
+					messageId: "unknown-type",
+					type: "CallExpression",
+					data: { type: "ConditionalExpression" },
+				},
+			],
+		},
+	],
 });
